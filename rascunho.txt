@@ -1,0 +1,88 @@
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
+
+import React, {useState} from 'react';
+
+export default function App() {
+
+  const [matricula, setMatricula] = useState(0)
+  const [nome, setNome] = useState(" ")
+      //converter a matricula para inteiro
+  const matInteira=()=>{
+    setMat(parseInt(matricula))
+  }
+
+  return (
+    <View style={styles.container}>
+      <Text style = {styles.display}>Meu primeiro app! Júlia e Thiago</Text>
+      
+      <Text style = {styles.display1}>Colégio TJ</Text>
+
+      <Text style = {styles.display2}>O Colégio TJ é uma instituição educacional
+      que se destaca por sua abordagem inovadora e compromisso com a excelência acadêmica.
+      Conseguido em um ambiente inspirador, o colégio é reconhecido por oferecer um ambiente
+      de aprendizado estimulante, onde os alunos são encorajados a explorar, questionar e desenvolver
+      suas habilidades intelectuais ao máximo. Com um corpo docente altamente qualificado e recursos
+      modernos, o Colégio TJ visa não apenas transmitir conhecimento, mas também cultivar valores como criatividade,
+      responsabilidade e pensamento crítico. Seja nas aulas tradicionais ou em projetos interdisciplinares, os alunos
+      do Colégio TJ estão preparados para enfrentar os desafios do mundo com confiança e perspicácia.</Text>
+
+      <TextInput
+        style = {styles.matricula}
+        value = {String(matricula)}
+          onChangeText = {(texto) => (setMatricula(texto))} >
+      </TextInput>
+      <TextInput
+        style = {styles.nome}
+        value = {String(nome)}
+          onChangeText = {(texto) => (setNome(texto))}>
+      </TextInput>
+
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#DCDCDC	',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  display: {
+    margin: 10, // margem superior do texto (entre cada texto e o primeiro texto em relação ao container)
+    marginLeft: 20, // margem esquerda do texto
+    color: '#6A5ACD',  
+  },
+
+  display1: { // segunda linha de texto 
+    marginLeft: 60,
+
+  },
+
+  display2: {
+
+  },
+
+  matricula: { //CAIXA DE TEXTO PARA MATRICULA
+    backgroundColor: '#FFF',
+    width: 40, //ÇARGURA DA CAIXA DE ENTRADA
+    height: 20, //ALTURA DA CAIXA DE ENTRADA
+    borderEndWidth: 1,
+    marginLeft: 10, //MARGEM ESQUERDA DO TEXTO
+    padding: 2, //ESPAÇO ENTRA A ENTRADA DE DADOS E A BORDA
+    },
+  
+    nome: { //CAIXA DE TEXTO PARA NOME
+      backgroundColor: '#FFF',
+      width: 300, //ÇARGURA DA CAIXA DE ENTRADA
+      height: 20, //ALTURA DA CAIXA DE ENTRADA
+      borderEndWidth: 1,
+      marginLeft: 10, //MARGEM ESQUERDA DO TEXTO
+      marginTop: 10, //MARGEM DA PRIMEIRA CAIXA DE ENTRADA PARA SEGUNDA
+      padding: 2, //ESPAÇO ENTRA A ENTRADA DE DADOS E A BORDA
+  }
+
+});
