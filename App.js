@@ -1,20 +1,19 @@
-
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ScrollView, TextInput, Image, Button, Alert } from 'react-native';
-
+import { StyleSheet, Text, View, ScrollView, TextInput, Image, Button, Alert, TouchableOpacity } from 'react-native';
 import React, {useState} from 'react';
 
 export default function App() {
 
   const [nomeUsuario, setUsuario] = useState('');
-  const [nome, setNome] = useState('');
   const [senha, setSenha] = useState('');
-  const [confirmasenha, setConfirmasenha] = useState('');
-
   const [showMessage, setShowMessage] = useState(false); // Novo estado para controlar a exibição da mensagem
 
   const showAlert = () => {
-    window.alert('Cadastro concluído', 'Seu cadastro foi concluído com sucesso!')
+    alert('Login concluído', 'Seu Login foi concluído com sucesso!');
+  };
+
+  const clickHandler = () => {
+    alert('Alunos: Thiago Valladão e Júlia Teles');
   };
 
 
@@ -22,48 +21,50 @@ export default function App() {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
       
-      <Text style = {styles.display1}>Quiz de Rotina e Bem-Estar</Text>
+        <Text style = {styles.display1}>Quiz de Rotina e Bem-Estar</Text>
+        <Image
+          source={require('./imagens/saude.png')} // o caminho da imagem do logotipo da empresa
+          style={styles.logo}
+        />
+        <Text style={styles.label}>Login</Text>
 
-      <Image
-        source={require('./imagens/saude.png')} // o caminho da imagem do logotipo da empresa
-        style={styles.logo}
-      />
+        <TextInput
+          style={styles.input}
+          placeholder="Nome de Usuário"
+         value={nomeUsuario}
+          onChangeText={text => setUsuario(text)}
+        />
 
-      <Text style={styles.label}>Cadastramento de Usuário</Text>
+       <TextInput
+         style={styles.input}
+         placeholder="Senha"
+         value={senha}
+         onChangeText={text => setSenha(text)}
+       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Nome de Usuário"
-        value={nome}
-        onChangeText={text => setUsuario(text)}
-      />
+       <Button title="Login" onPress={showAlert} />
+         <Text
+            style={styles.hyperlinkStyle}
+            onPress={() => navigation.navigate('Cadastro')}>
+            Cadastre-se caso não tenha uma conta
+         </Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Nome"
-        value={nome}
-        onChangeText={text => setNome(text)}
-      />
-
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        value={senha}
-        onChangeText={text => setSenha(text)}
-      />
-
-      <TextInput
-        style={styles.input}
-        placeholder="Confirme sua Senha"
-        value={confirmasenha}
-        onChangeText={text => setConfirmasenha(text)}
-      />
-
-      <Button title="Cadastrar" onPress={showAlert} />
-
-      <StatusBar style="auto" />
+        <StatusBar style="auto" />
       </ScrollView>
-    </View>
+
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={clickHandler}
+        style={styles.touchableOpacityStyle}>
+        <Image
+        source={{
+        uri:
+        'https://developerplus.com.br/wp-content/uploads/2021/12/plus_icon.png',
+      }}
+    style={styles.floatingButtonStyle}
+  />
+</TouchableOpacity>
+  </View>
   );
 }
 
@@ -83,6 +84,7 @@ const styles = StyleSheet.create({
 
   display1: { // segunda linha de texto 
     marginLeft: 20,
+    fontSize: 30,
     fontWeight: 'bold',
 
   },
@@ -131,5 +133,21 @@ const styles = StyleSheet.create({
     marginTop: 20,
     color: 'green', // Cor da mensagem (você pode personalizar)
   },
- 
+  touchableOpacityStyle: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 30,
+    bottom: 30,
+  },
+  floatingButtonStyle: {
+    resizeMode: 'contain',
+    width: 70,
+    height: 70,
+  },
+  hyperlinkStyle: {
+    color: 'blue',
+  },
 });
